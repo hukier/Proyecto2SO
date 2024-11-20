@@ -46,11 +46,17 @@ int main(int argc, char *argv[]) {
     int pageFaults = 0;
     if (strcmp(algorithm, "FIFO") == 0) {
         pageFaults = fifoReplacement(references, n, frames);
+    } else if (strcmp(algorithm, "OPTIMO") == 0) {
+    pageFaults = optimalReplacement(references, n, frames);
+    } else if (strcmp(algorithm, "LRU") == 0) {
+    pageFaults = lruReplacement(references, n, frames);
+    } else if (strcmp(algorithm, "LRU_Reloj") == 0) {
+    pageFaults = lruClockReplacement(references, n, frames);
     } else {
-        printf("Algoritmo no implementado: %s\n", algorithm);
-        return 1;
-    }
+            printf("Algoritmo no implementado: %s\n", algorithm);
+            return 1;
+            }
 
-    printf("Numero de fallos de pagina: %d\n", pageFaults);
-    return 0;
+        printf("Numero de fallos de pagina: %d\n", pageFaults);
+        return 0;
 }
